@@ -1,0 +1,21 @@
+# This function takes an input string that consists of a batmud quick walk command, directions, separated by ";" and reverses the direction. Example "reverse_path(e, s, 3 n)" should return "3 s, n, w"
+
+def reverse_path(directions):
+    # Changing directions south and north around
+    rev_dirs_ns = directions.replace("n", "x").replace("N", "X").replace("s", "n").replace("S", "N").replace("x", "s").replace("X", "S")
+    
+    # Changing directions east and west around
+    rev_dirs = rev_dirs_ns.replace("e", "x").replace("E", "X").replace("w", "e").replace("W", "X").replace("x", "w").replace("X","W")
+    # Splitting the string into sortable list using batmud separator ";"
+    split_path = rev_dirs.split(";")
+    
+    # Reversing the order and joining as a string again for easier copypaste
+    split_path.reverse()
+    reversed_path = ";".join(split_path)
+    
+    return reversed_path
+    
+directions = "7 e;3 s;4 e;2 s;2 e;7 s;ts;tsw;tsw;tsw;tw 50;tw 50;4 w;sw;SW;S;SE;S;SE;S;SE;S;SE;S;SW;S;SW;W;SW;S;SE;10 se;7 s;4 e"
+
+new_path = reverse_path(directions)
+print(new_path)
